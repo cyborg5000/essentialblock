@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" fill="none">
+  <!-- Isometric Block Logo -->
+  <g transform="translate(10, 20)">
+    <!-- Purple Block -->
+    <path d="M0 30L30 15L60 30L30 45L0 30Z" fill="#9370DB"/>
+    <path d="M30 15L60 30L60 60L30 45L30 15Z" fill="#7B52D3"/>
+    <path d="M0 30L30 45L30 75L0 60L0 30Z" fill="#8561D5"/>
+    
+    <!-- Orange Block -->
+    <path d="M30 45L60 30L60 60L30 75L30 45Z" fill="#F4A261"/>
+    <path d="M30 45L30 75L0 60L0 30L30 45Z" fill="#E48E38"/>
+  </g>
+  
+  <!-- Text "Essential" -->
+  <text x="100" y="60" fill="#9370DB" font-family="Arial, sans-serif" font-size="40" font-weight="bold">
+    Essential
+  </text>
+  
+  <!-- Text "Block" -->
+  <text x="270" y="60" fill="#666666" font-family="Arial, sans-serif" font-size="40" font-weight="bold">
+    Block
+  </text>
+</svg> 
