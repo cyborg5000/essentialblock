@@ -16,12 +16,14 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <Image 
+          <Image
             src="/EBlogo.webp"
-            alt="Essential Block"
+            alt="Essential Block - Strategic Marketing and Corporate Gifts"
             width={180}
             height={45}
             priority
+            quality={90}
+            sizes="(max-width: 768px) 150px, 180px"
           />
         </Link>
         
@@ -52,17 +54,19 @@ const Header = () => {
         </div>
         
         {/* Mobile Menu Button */}
-        <button 
+        <button
           onClick={toggleMenu}
-          className="md:hidden text-gray-800 focus:outline-none"
-          aria-label="Toggle menu"
+          className="md:hidden text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-1"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
         >
           {isMenuOpen ? (
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           )}
@@ -71,7 +75,7 @@ const Header = () => {
       
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100">
+        <nav id="mobile-menu" className="md:hidden bg-white border-t border-gray-100" role="navigation" aria-label="Mobile navigation">
           <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
             <Link href="#services" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
               Services
@@ -92,7 +96,7 @@ const Header = () => {
               Get a Quote
             </Link>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

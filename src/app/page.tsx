@@ -1,7 +1,27 @@
-import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+// Code split heavy interactive components for better performance
+// HeroVisual uses framer-motion heavily, so we lazy load it
+const HeroVisual = dynamic(() => import("@/components/HeroVisual"), {
+  loading: () => (
+    <div className="relative h-[300px] sm:h-[350px] md:h-[500px] flex items-center justify-center">
+      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 animate-pulse" />
+    </div>
+  ),
+});
+
+const ContactForm = dynamic(() => import("@/components/ContactForm"), {
+  loading: () => (
+    <div className="space-y-6 animate-pulse">
+      <div className="h-12 bg-gray-200 rounded-lg"></div>
+      <div className="h-12 bg-gray-200 rounded-lg"></div>
+      <div className="h-32 bg-gray-200 rounded-lg"></div>
+    </div>
+  ),
+});
 
 export default function Home() {
   return (
@@ -30,21 +50,21 @@ export default function Home() {
                 Experience the perfect blend of <span className="underline decoration-primary decoration-2 underline-offset-2">creativity</span> and <span className="underline decoration-secondary decoration-2 underline-offset-2">impact</span>.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link 
-                  href="#contact" 
-                  className="btn-primary px-8 py-4 rounded-full text-center font-medium transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                <Link
+                  href="#contact"
+                  className="btn-primary px-8 py-4 rounded-full text-center font-medium transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
                   <span>Start Your Journey</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
-                <Link 
-                  href="#services" 
-                  className="btn-outline px-8 py-4 rounded-full text-center font-medium hover:bg-gray-50 transition-all duration-300 group"
+                <Link
+                  href="#services"
+                  className="btn-outline px-8 py-4 rounded-full text-center font-medium hover:bg-gray-50 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
                   <span>Explore Services</span>
-                  <span className="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span>
+                  <span className="inline-block ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
                 </Link>
               </div>
               <div className="mt-12 flex items-center gap-6">
@@ -60,21 +80,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="relative h-[400px] md:h-[500px]">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl transform rotate-6"></div>
-              <Image
-                src="/marketing-illustration.svg"
-                alt="Marketing and Gifts Illustration"
-                fill
-                className="object-contain transform hover:scale-105 transition-all duration-500"
-                priority
-              />
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-full shadow-xl p-4 animate-bounce-slow hidden md:block">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-            </div>
+            <HeroVisual />
           </div>
         </div>
       </section>
@@ -98,9 +104,9 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 gap-10">
             {/* Marketing Services */}
-            <div id="marketing" className="bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-primary">
+            <article id="marketing" className="bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-primary">
               <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-8">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
                 </svg>
@@ -112,7 +118,7 @@ export default function Home() {
               <ul className="space-y-4 text-gray-600 mb-8">
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -120,7 +126,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -128,7 +134,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -136,7 +142,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -144,28 +150,28 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
                   <span><span className="font-medium">Advanced SEO Optimization</span> for increased visibility</span>
                 </li>
               </ul>
-              <Link 
-                href="#contact" 
+              <Link
+                href="#contact"
                 className="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors group px-5 py-2 rounded-full bg-primary/5 hover:bg-primary/10"
               >
-                Discover More 
-                <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                Discover More
+                <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
                 </svg>
               </Link>
-            </div>
+            </article>
 
             {/* Corporate Gifts */}
-            <div id="corporate-gifts" className="bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-secondary">
+            <article id="corporate-gifts" className="bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-t-4 border-secondary">
               <div className="h-16 w-16 bg-secondary/10 rounded-full flex items-center justify-center mb-8">
-                <svg className="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
                 </svg>
               </div>
@@ -176,7 +182,7 @@ export default function Home() {
               <ul className="space-y-4 text-gray-600 mb-8">
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -184,7 +190,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -192,7 +198,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -200,7 +206,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
@@ -208,23 +214,23 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="h-6 w-6 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
                   <span><span className="font-medium">VIP Client Appreciation Sets</span> that strengthen business relationships</span>
                 </li>
               </ul>
-              <Link 
-                href="#contact" 
+              <Link
+                href="#contact"
                 className="inline-flex items-center text-secondary font-medium hover:text-secondary-dark transition-colors group px-5 py-2 rounded-full bg-secondary/5 hover:bg-secondary/10"
               >
                 Explore Collections
-                <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
                 </svg>
               </Link>
-            </div>
+            </article>
           </div>
         </div>
       </section>
@@ -240,7 +246,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              We bring together <span className="font-semibold">strategic thinking</span>, <span className="font-semibold">creative excellence</span>, and <span className="font-semibold">premium gifting</span> 
+              We bring together <span className="font-semibold">strategic thinking</span>, <span className="font-semibold">creative excellence</span>, and <span className="font-semibold">premium gifting</span>{" "}
               to deliver <span className="underline decoration-primary decoration-2 underline-offset-2">exceptional results</span> for your brand.
             </p>
           </div>
@@ -248,7 +254,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-8 rounded-xl hover:bg-gray-50 transition-colors duration-300 shadow-sm hover:shadow-md border border-gray-100">
               <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
               </div>
@@ -260,7 +266,7 @@ export default function Home() {
 
             <div className="text-center p-8 rounded-xl hover:bg-gray-50 transition-colors duration-300 shadow-sm hover:shadow-md border border-gray-100">
               <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
               </div>
@@ -272,7 +278,7 @@ export default function Home() {
 
             <div className="text-center p-8 rounded-xl hover:bg-gray-50 transition-colors duration-300 shadow-sm hover:shadow-md border border-gray-100">
               <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
@@ -361,61 +367,7 @@ export default function Home() {
               </p>
             </div>
             <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-gray-100">
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-                    <input
-                      id="name"
-                      type="text"
-                      placeholder="John Doe"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Your Email</label>
-                    <input
-                      id="email"
-                      type="email"
-                      placeholder="john@company.com"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                  <input
-                    id="subject"
-                    type="text"
-                    placeholder="How can we help you?"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
-                  <textarea
-                    id="message"
-                    placeholder="Tell us about your project..."
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
-                  ></textarea>
-                </div>
-                <button 
-                  type="submit" 
-                  className="btn-primary w-full py-4 rounded-lg font-medium transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                >
-                  <span>Send Message</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                </button>
-                <div className="flex items-center justify-center gap-2 text-center text-sm text-gray-600">
-                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>We&apos;ll get back to you within <span className="font-semibold">24 hours</span></span>
-                </div>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>
