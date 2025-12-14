@@ -43,10 +43,11 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "Essential Block - Marketing & Corporate Gifts",
+        type: "image/svg+xml",
       },
     ],
   },
@@ -54,9 +55,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Essential Block | Strategic Marketing & Premium Corporate Gifts",
     description: "Transform your brand with powerful marketing and memorable corporate gifts.",
-    images: ["/twitter-image.jpg"],
+    images: ["/twitter-image.svg"],
   },
   metadataBase: new URL("https://essentialblock.com"),
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export const viewport: Viewport = {
@@ -70,8 +74,104 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Structured Data - Organization Schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Essential Block",
+    "url": "https://essentialblock.com",
+    "logo": "https://essentialblock.com/EBlogo.webp",
+    "description": "Strategic Marketing & Premium Corporate Gifts - Transform your brand with data-driven marketing strategies and thoughtfully curated corporate gifts.",
+    "foundingDate": "2013",
+    "slogan": "Where Strategic Marketing Meets Memorable Gifting",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "500",
+      "bestRating": "5"
+    }
+  };
+
+  // Service Schema - Marketing Services
+  const marketingServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Marketing Services",
+    "provider": {
+      "@type": "Organization",
+      "name": "Essential Block"
+    },
+    "description": "Data-driven marketing strategies including digital marketing campaigns, brand development, social media management, content creation, and SEO optimization.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Marketing Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Digital Marketing Campaigns"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Brand Development"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Social Media Management"
+          }
+        }
+      ]
+    }
+  };
+
+  // Service Schema - Corporate Gifts
+  const giftsServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Corporate Gift Services",
+    "provider": {
+      "@type": "Organization",
+      "name": "Essential Block"
+    },
+    "description": "Premium corporate gifts including branded merchandise, luxury gift collections, event giveaways, and personalized recognition gifts.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    }
+  };
+
   return (
     <html lang="en" className="light">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(marketingServiceSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(giftsServiceSchema) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}
       >
