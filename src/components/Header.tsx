@@ -29,26 +29,29 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          <Link href="#services" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/#services" className="text-gray-800 hover:text-primary font-medium transition duration-300">
             Services
           </Link>
-          <Link href="#marketing" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/#marketing" className="text-gray-800 hover:text-primary font-medium transition duration-300">
             Marketing
           </Link>
-          <Link href="#corporate-gifts" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/#corporate-gifts" className="text-gray-800 hover:text-primary font-medium transition duration-300">
             Corporate Gifts
           </Link>
-          <Link href="#about" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/resources" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+            Resources
+          </Link>
+          <Link href="/#about" className="text-gray-800 hover:text-primary font-medium transition duration-300">
             About
           </Link>
-          <Link href="#contact" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/#contact" className="text-gray-800 hover:text-primary font-medium transition duration-300">
             Contact
           </Link>
         </nav>
         
         {/* CTA Button */}
         <div className="hidden md:block">
-          <Link href="#contact" className="btn-primary px-5 py-2 rounded-full font-medium">
+          <Link href="/#contact" className="btn-primary px-5 py-2 rounded-full font-medium">
             Get a Quote
           </Link>
         </div>
@@ -77,22 +80,25 @@ const Header = () => {
       {isMenuOpen && (
         <nav id="mobile-menu" className="md:hidden bg-white border-t border-gray-100" role="navigation" aria-label="Mobile navigation">
           <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
-            <Link href="#services" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/#services" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
               Services
             </Link>
-            <Link href="#marketing" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/#marketing" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
               Marketing
             </Link>
-            <Link href="#corporate-gifts" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/#corporate-gifts" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
               Corporate Gifts
             </Link>
-            <Link href="#about" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/resources" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+              Resources
+            </Link>
+            <Link href="/#about" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
               About
             </Link>
-            <Link href="#contact" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/#contact" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
               Contact
             </Link>
-            <Link href="#contact" onClick={toggleMenu} className="btn-primary inline-block text-center px-5 py-2 rounded-full font-medium">
+            <Link href="/#contact" onClick={toggleMenu} className="btn-primary inline-block text-center px-5 py-2 rounded-full font-medium">
               Get a Quote
             </Link>
           </div>
