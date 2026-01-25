@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      
+      <main id="main-content">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-b from-white via-gray-50 to-white py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -372,6 +372,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </>

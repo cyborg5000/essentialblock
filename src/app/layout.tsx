@@ -41,21 +41,11 @@ export const metadata: Metadata = {
     siteName: "Essential Block",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/og-image.svg",
-        width: 1200,
-        height: 630,
-        alt: "Essential Block - Marketing & Corporate Gifts",
-        type: "image/svg+xml",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Essential Block | Strategic Marketing & Premium Corporate Gifts",
     description: "Transform your brand with powerful marketing and memorable corporate gifts.",
-    images: ["/twitter-image.svg"],
   },
   metadataBase: new URL("https://essentialblock.com"),
   alternates: {
@@ -156,6 +146,107 @@ export default function RootLayout({
     }
   };
 
+  // FAQ Schema for rich snippets
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What marketing services does Essential Block offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Essential Block offers comprehensive marketing services including targeted digital marketing campaigns, strategic brand development, expert social media management, engaging content creation, and advanced SEO optimization to help your brand reach its target audience effectively."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What types of corporate gifts are available?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer a wide range of premium corporate gifts including bespoke branded merchandise, luxury gift collections for VIP clients, memorable event giveaways, personalized recognition gifts for employees, and curated appreciation sets that strengthen business relationships."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Essential Block integrate marketing with corporate gifting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Essential Block takes a holistic approach by seamlessly integrating marketing strategies with corporate gifting solutions. This creates powerful brand experiences that combine strategic messaging with tangible touchpoints, resulting in stronger client relationships and measurable ROI."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Essential Block's experience in the industry?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Essential Block has over 10 years of industry experience, having completed 500+ successful projects with a 98% client satisfaction rate. We've helped brands across various industries achieve an average 3x ROI on their marketing and gifting investments."
+        }
+      }
+    ]
+  };
+
+  // Review Schema for testimonials
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Essential Block",
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Marketing Director"
+        },
+        "reviewBody": "Essential Block transformed our brand presence with their strategic approach and thoughtful gifting solutions.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "CEO, Tech Startup"
+        },
+        "reviewBody": "Their integrated approach to marketing and corporate gifts has helped us build stronger relationships with our clients.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      }
+    ]
+  };
+
+  // BreadcrumbList Schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://essentialblock.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Marketing Services",
+        "item": "https://essentialblock.com/#marketing"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Corporate Gifts",
+        "item": "https://essentialblock.com/#corporate-gifts"
+      }
+    ]
+  };
+
   return (
     <html lang="en" className="light">
       <head>
@@ -170,6 +261,18 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(giftsServiceSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </head>
       <body
