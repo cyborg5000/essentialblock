@@ -1,17 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f2ec;
+  --foreground: #1f1b16;
   
   /* Essential Block Brand Colors */
   --primary: #9370DB;
   --primary-dark: #7B52D3;
   --secondary: #F4A261;
   --secondary-dark: #E48E38;
-  --gray-light: #f8f9fa;
-  --gray-medium: #e9ecef;
-  --gray-dark: #666666;
+
+  /* Rebrand Neutrals */
+  --paper: #fbf6f0;
+  --sand: #f0e6da;
+  --mist: #f4ede5;
+  --ink: #1f1b16;
+  --ink-muted: #4c463f;
+  --line: #e6d9cc;
+
+  --gray-light: var(--paper);
+  --gray-medium: var(--sand);
+  --gray-dark: var(--ink-muted);
 }
 
 @theme inline {
@@ -21,8 +30,9 @@
   --color-primary-dark: var(--primary-dark);
   --color-secondary: var(--secondary);
   --color-secondary-dark: var(--secondary-dark);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-display);
 }
 
 /* Light mode only - dark mode styles removed for performance */
@@ -30,10 +40,53 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-family: var(--font-body, "Manrope", system-ui, -apple-system, sans-serif);
 }
 
 /* Additional utility classes */
+.font-display {
+  font-family: var(--font-display, "Playfair Display", serif);
+  letter-spacing: -0.01em;
+}
+
+.text-ink {
+  color: var(--ink);
+}
+
+.text-ink-muted {
+  color: var(--ink-muted);
+}
+
+.bg-paper {
+  background-color: var(--paper);
+}
+
+.bg-sand {
+  background-color: var(--sand);
+}
+
+.bg-ink {
+  background-color: var(--ink);
+}
+
+.border-line {
+  border-color: var(--line);
+}
+
+.glass-panel {
+  background: rgba(251, 246, 240, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 30px 80px rgba(31, 27, 22, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.section-sheen {
+  background:
+    radial-gradient(800px circle at 20% 20%, rgba(147, 112, 219, 0.18), transparent 40%),
+    radial-gradient(900px circle at 80% 10%, rgba(244, 162, 97, 0.18), transparent 45%),
+    linear-gradient(180deg, var(--paper) 0%, var(--mist) 50%, var(--paper) 100%);
+}
+
 .text-primary {
   color: var(--primary);
 }
@@ -68,35 +121,35 @@ body {
 
 /* Button styles */
 .btn-primary {
-  background-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
+  box-shadow: 0 16px 40px rgba(147, 112, 219, 0.28);
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-dark);
+  box-shadow: 0 22px 48px rgba(147, 112, 219, 0.35);
 }
 
 .btn-secondary {
-  background-color: var(--secondary);
-  color: white;
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  color: #ffffff;
   transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background-color: var(--secondary-dark);
 }
 
 .btn-outline {
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  background-color: transparent;
+  border: 1.5px solid rgba(147, 112, 219, 0.6);
+  color: var(--primary-dark);
+  background-color: rgba(255, 255, 255, 0.6);
   transition: all 0.3s ease;
 }
 
 .btn-outline:hover {
-  background-color: var(--primary);
-  color: white;
+  background-color: rgba(147, 112, 219, 0.12);
+  color: var(--primary-dark);
 }
 
 /* Hero Micro Interactions */

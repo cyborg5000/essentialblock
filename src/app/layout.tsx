@@ -1,16 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const bodyFont = Manrope({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
   preload: true,
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const displayFont = Playfair_Display({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+});
+
+const monoFont = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
   preload: false,
@@ -248,7 +255,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="light">
+    <html lang="en" className={`light ${bodyFont.variable} ${displayFont.variable} ${monoFont.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -275,9 +282,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}
-      >
+      <body className="antialiased bg-[var(--background)] text-[var(--foreground)]">
         {children}
       </body>
     </html>

@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/60">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center">
@@ -29,22 +29,22 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          <Link href="/#services" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/#services" className="text-ink hover:text-primary font-medium transition duration-300">
             Services
           </Link>
-          <Link href="/#marketing" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/#marketing" className="text-ink hover:text-primary font-medium transition duration-300">
             Marketing
           </Link>
-          <Link href="/#corporate-gifts" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/#corporate-gifts" className="text-ink hover:text-primary font-medium transition duration-300">
             Corporate Gifts
           </Link>
-          <Link href="/resources" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/resources" className="text-ink hover:text-primary font-medium transition duration-300">
             Resources
           </Link>
-          <Link href="/#about" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/#about" className="text-ink hover:text-primary font-medium transition duration-300">
             About
           </Link>
-          <Link href="/#contact" className="text-gray-800 hover:text-primary font-medium transition duration-300">
+          <Link href="/#contact" className="text-ink hover:text-primary font-medium transition duration-300">
             Contact
           </Link>
         </nav>
@@ -59,7 +59,7 @@ const Header = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-1"
+          className="md:hidden text-ink focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md p-1"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
@@ -78,24 +78,24 @@ const Header = () => {
       
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <nav id="mobile-menu" className="md:hidden bg-white border-t border-gray-100" role="navigation" aria-label="Mobile navigation">
+        <nav id="mobile-menu" className="md:hidden bg-white/95 border-t border-white/60" role="navigation" aria-label="Mobile navigation">
           <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
-            <Link href="/#services" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/#services" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
               Services
             </Link>
-            <Link href="/#marketing" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/#marketing" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
               Marketing
             </Link>
-            <Link href="/#corporate-gifts" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/#corporate-gifts" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
               Corporate Gifts
             </Link>
-            <Link href="/resources" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/resources" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
               Resources
             </Link>
-            <Link href="/#about" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/#about" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
               About
             </Link>
-            <Link href="/#contact" onClick={toggleMenu} className="text-gray-800 hover:text-primary py-2 font-medium">
+            <Link href="/#contact" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
               Contact
             </Link>
             <Link href="/#contact" onClick={toggleMenu} className="btn-primary inline-block text-center px-5 py-2 rounded-full font-medium">

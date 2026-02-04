@@ -252,7 +252,7 @@ export default function HeroVisual() {
 
         {/* Central graphic area */}
         <motion.div
-          className="absolute inset-8 sm:inset-10 md:inset-12 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg"
+          className="absolute inset-8 sm:inset-10 md:inset-12 bg-[#fbf6f0]/95 backdrop-blur-sm rounded-xl shadow-lg"
           variants={itemVariants}
           whileHover={{
             scale: 1.02,
@@ -414,7 +414,7 @@ export default function HeroVisual() {
 
               {/* Center logo/brand element - Enhanced */}
               <motion.div
-                className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 bg-gradient-to-br from-gray-900 to-gray-700 rounded-full shadow-2xl flex items-center justify-center relative overflow-hidden cursor-pointer"
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 bg-gradient-to-br from-[#1f1b16] to-[#3b342c] rounded-full shadow-2xl flex items-center justify-center relative overflow-hidden cursor-pointer"
                 variants={cardHoverVariants}
                 initial="rest"
                 whileHover="hover"
@@ -458,7 +458,7 @@ export default function HeroVisual() {
 
         {/* Floating stats cards - Growth */}
         <motion.div
-          className="absolute -top-2 right-4 sm:-top-4 sm:right-8 bg-white rounded-xl p-3 sm:p-4 cursor-pointer overflow-hidden shadow-lg hidden sm:block"
+          className="absolute -top-2 right-4 sm:-top-4 sm:right-8 bg-[#fbf6f0] rounded-xl p-3 sm:p-4 cursor-pointer overflow-hidden shadow-lg hidden sm:block"
           variants={cardHoverVariants}
           initial="rest"
           whileHover="hover"
@@ -512,7 +512,7 @@ export default function HeroVisual() {
             <div>
               <p className="text-xs text-gray-500">Growth</p>
               <motion.p
-                className="font-bold text-gray-900 text-sm sm:text-base"
+                className="font-bold text-ink text-sm sm:text-base"
                 animate={activeCard === "growth" ? { scale: [1, 1.05, 1] } : {}}
                 transition={{ duration: 0.3 }}
               >
@@ -524,7 +524,7 @@ export default function HeroVisual() {
 
         {/* Floating stats cards - Clients */}
         <motion.div
-          className="absolute bottom-4 -left-2 sm:bottom-8 sm:-left-4 bg-white rounded-xl p-3 sm:p-4 cursor-pointer overflow-hidden shadow-lg hidden sm:block"
+          className="absolute bottom-4 -left-2 sm:bottom-8 sm:-left-4 bg-[#fbf6f0] rounded-xl p-3 sm:p-4 cursor-pointer overflow-hidden shadow-lg hidden sm:block"
           variants={cardHoverVariants}
           initial="rest"
           whileHover="hover"
@@ -573,7 +573,7 @@ export default function HeroVisual() {
             <div>
               <p className="text-xs text-gray-500">Happy Clients</p>
               <motion.p
-                className="font-bold text-gray-900 text-sm sm:text-base"
+                className="font-bold text-ink text-sm sm:text-base"
                 animate={activeCard === "clients" ? { scale: [1, 1.05, 1] } : {}}
                 transition={{ duration: 0.3 }}
               >
@@ -585,7 +585,7 @@ export default function HeroVisual() {
 
         {/* Checkmark badge - Enhanced */}
         <motion.div
-          className="absolute -bottom-2 right-2 sm:-bottom-4 sm:right-4 bg-white rounded-full shadow-xl p-3 sm:p-4 cursor-pointer overflow-hidden hidden sm:block"
+          className="absolute -bottom-2 right-2 sm:-bottom-4 sm:right-4 bg-[#fbf6f0] rounded-full shadow-xl p-3 sm:p-4 cursor-pointer overflow-hidden hidden sm:block"
           variants={cardHoverVariants}
           initial="rest"
           whileHover="hover"
