@@ -1,18 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/60">
+    <header className={`sticky top-0 z-50 backdrop-blur-xl border-b border-white/60 transition-all duration-300 ${isScrolled ? 'bg-white/95 shadow-sm' : 'bg-white/80'}`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center">
@@ -26,17 +35,11 @@ const Header = () => {
             sizes="(max-width: 768px) 150px, 180px"
           />
         </Link>
-        
+
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex space-x-8" aria-label="Main navigation">
           <Link href="/#services" className="text-ink hover:text-primary font-medium transition duration-300">
             Services
-          </Link>
-          <Link href="/#marketing" className="text-ink hover:text-primary font-medium transition duration-300">
-            Marketing
-          </Link>
-          <Link href="/#corporate-gifts" className="text-ink hover:text-primary font-medium transition duration-300">
-            Corporate Gifts
           </Link>
           <Link href="/resources" className="text-ink hover:text-primary font-medium transition duration-300">
             Resources
@@ -48,14 +51,14 @@ const Header = () => {
             Contact
           </Link>
         </nav>
-        
+
         {/* CTA Button */}
         <div className="hidden md:block">
           <Link href="/#contact" className="btn-primary px-5 py-2 rounded-full font-medium">
-            Get a Quote
+            Book a Free Strategy Call
           </Link>
         </div>
-        
+
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
@@ -75,19 +78,17 @@ const Header = () => {
           )}
         </button>
       </div>
-      
+
       {/* Mobile Menu */}
       {isMenuOpen && (
         <nav id="mobile-menu" className="md:hidden bg-white/95 border-t border-white/60" role="navigation" aria-label="Mobile navigation">
           <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
+            <Link href="/#contact" onClick={toggleMenu} className="btn-primary inline-block text-center px-5 py-2 rounded-full font-medium">
+              Book a Free Strategy Call
+            </Link>
+            <hr className="border-gray-200" />
             <Link href="/#services" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
               Services
-            </Link>
-            <Link href="/#marketing" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
-              Marketing
-            </Link>
-            <Link href="/#corporate-gifts" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
-              Corporate Gifts
             </Link>
             <Link href="/resources" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
               Resources
@@ -98,9 +99,6 @@ const Header = () => {
             <Link href="/#contact" onClick={toggleMenu} className="text-ink hover:text-primary py-2 font-medium">
               Contact
             </Link>
-            <Link href="/#contact" onClick={toggleMenu} className="btn-primary inline-block text-center px-5 py-2 rounded-full font-medium">
-              Get a Quote
-            </Link>
           </div>
         </nav>
       )}
@@ -108,4 +106,4 @@ const Header = () => {
   );
 };
 
-export default Header; 
+export default Header;

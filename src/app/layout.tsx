@@ -24,8 +24,8 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Essential Block | Strategic Marketing & Premium Corporate Gifts",
-  description: "Transform your brand with data-driven marketing strategies and thoughtfully curated corporate gifts. 10+ years experience, 500+ projects completed, 98% client satisfaction.",
+  title: "Essential Block | Marketing Agency & Corporate Gifting Company",
+  description: "Full-service marketing agency and corporate gifting company. 500+ projects, 98% client satisfaction, 3x average ROI. Strategy, storytelling, and premium gifts.",
   keywords: "marketing agency, digital marketing, corporate gifts, brand development, social media management, SEO optimization, branded merchandise, luxury gift collections, event giveaways",
   authors: [{ name: "Essential Block" }],
   creator: "Essential Block",
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Essential Block | Strategic Marketing & Premium Corporate Gifts",
-    description: "Data-driven marketing strategies and premium corporate gifting solutions. 500+ successful brands trust us for exceptional results.",
+    title: "Essential Block | Marketing Agency & Corporate Gifting Company",
+    description: "Full-service marketing agency and corporate gifting company. 500+ projects, 98% client satisfaction, 3x average ROI. Strategy, storytelling, and premium gifts.",
     url: "https://essentialblock.com",
     siteName: "Essential Block",
     locale: "en_US",
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Essential Block | Strategic Marketing & Premium Corporate Gifts",
-    description: "Transform your brand with powerful marketing and memorable corporate gifts.",
+    title: "Essential Block | Marketing Agency & Corporate Gifting Company",
+    description: "Full-service marketing agency and corporate gifting company. 500+ projects, 98% client satisfaction, 3x average ROI. Strategy, storytelling, and premium gifts.",
   },
   metadataBase: new URL("https://essentialblock.com"),
   alternates: {
@@ -88,8 +88,8 @@ export default function RootLayout({
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "500",
+      "ratingValue": "5",
+      "reviewCount": "2",
       "bestRating": "5"
     }
   };
@@ -193,66 +193,11 @@ export default function RootLayout({
     ]
   };
 
-  // Review Schema for testimonials
-  const reviewSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Essential Block",
-    "review": [
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Marketing Director"
-        },
-        "reviewBody": "Essential Block transformed our brand presence with their strategic approach and thoughtful gifting solutions.",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        }
-      },
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "CEO, Tech Startup"
-        },
-        "reviewBody": "Their integrated approach to marketing and corporate gifts has helped us build stronger relationships with our clients.",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        }
-      }
-    ]
-  };
-
-  // BreadcrumbList Schema
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://essentialblock.com"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Marketing Services",
-        "item": "https://essentialblock.com/#marketing"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Corporate Gifts",
-        "item": "https://essentialblock.com/#corporate-gifts"
-      }
-    ]
-  };
+  // Review and BreadcrumbList schemas removed:
+  // - Reviews had fake reviewer names ("Marketing Director", "CEO, Tech Startup")
+  // - Breadcrumbs pointed to hash fragment URLs (/#marketing, /#corporate-gifts) which are not real pages
+  // TODO: Re-add Review schema with real client testimonials when available
+  // TODO: Re-add BreadcrumbList schema when dedicated service pages exist
 
   return (
     <html lang="en" className={`light ${bodyFont.variable} ${displayFont.variable} ${monoFont.variable}`}>
@@ -272,14 +217,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </head>
       <body className="antialiased bg-[var(--background)] text-[var(--foreground)]">

@@ -3,7 +3,7 @@ import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { getResourceBySlug, getAllResourceSlugs } from '@/lib/resources';
+import { getResourceBySlug, getAllResources, getAllResourceSlugs } from '@/lib/resources';
 import ReactMarkdown from 'react-markdown';
 
 interface PageProps {
@@ -37,6 +37,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: resource.frontmatter.excerpt,
       type: 'article',
       publishedTime: resource.frontmatter.date,
+      url: `/resources/${slug}`,
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: resource.frontmatter.title,
+      description: resource.frontmatter.excerpt,
+    },
+    alternates: {
+      canonical: `/resources/${slug}`,
     },
   };
 }
@@ -50,6 +60,12 @@ export default async function ResourcePage({ params }: PageProps) {
   }
 
   const { frontmatter, content } = resource;
+
+  // Get related resources (up to 2, excluding current and external resources)
+  const allResources = await getAllResources();
+  const relatedResources = allResources
+    .filter((r) => r.slug !== slug && r.frontmatter.type !== 'external')
+    .slice(0, 2);
 
   // Handle external links - redirect immediately
   if (frontmatter.type === 'external' && frontmatter.externalUrl) {
@@ -189,6 +205,69 @@ export default async function ResourcePage({ params }: PageProps) {
           </div>
         </div>
       </article>
+
+      {/* CTA Section */}
+      <section className="py-12 md:py-16 bg-sand">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="rounded-2xl border border-gray-200 bg-white/80 backdrop-blur-sm p-8 md:p-10 text-center shadow-sm">
+              <h2 className="font-display text-2xl md:text-3xl text-ink mb-3">
+                Need help implementing this strategy?
+              </h2>
+              <p className="text-ink-muted mb-6 max-w-xl mx-auto">
+                Our team can build a custom plan tailored to your brand.
+              </p>
+              <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 btn-primary px-8 py-4 rounded-full font-medium"
+              >
+                <span>Book a Free Strategy Call</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Resources */}
+      {relatedResources.length > 0 && (
+        <section className="py-12 md:py-16 bg-paper">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="font-display text-2xl md:text-3xl text-ink mb-8 text-center">
+                Related Resources
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {relatedResources.map((related) => (
+                  <Link
+                    key={related.slug}
+                    href={`/resources/${related.slug}`}
+                    className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
+                  >
+                    <span
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium mb-3 ${
+                        related.frontmatter.type === 'guide'
+                          ? 'text-primary bg-primary/10'
+                          : 'text-secondary bg-secondary/10'
+                      }`}
+                    >
+                      {related.frontmatter.type === 'guide' ? 'Guide' : 'Download'}
+                    </span>
+                    <h3 className="text-lg font-semibold text-ink group-hover:text-primary transition-colors mb-2">
+                      {related.frontmatter.title}
+                    </h3>
+                    <p className="text-sm text-ink-muted line-clamp-2">
+                      {related.frontmatter.excerpt}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Back to Resources */}
       <section className="py-12 bg-gray-light">

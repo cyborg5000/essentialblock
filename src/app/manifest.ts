@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Transform your brand with data-driven marketing strategies and thoughtfully curated corporate gifts. 10+ years experience, 500+ projects completed.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
+    background_color: '#f7f2ec',
     theme_color: '#9370DB',
     orientation: 'portrait-primary',
     scope: '/',

@@ -12,6 +12,16 @@ export const metadata: Metadata = {
     title: 'Resources | Essential Block',
     description: 'Explore our collection of marketing guides, downloadable resources, and curated external links.',
     type: 'website',
+    url: '/resources',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Resources | Essential Block',
+    description: 'Explore our collection of marketing guides, downloadable resources, and curated external links to help elevate your brand.',
+  },
+  alternates: {
+    canonical: '/resources',
   },
 };
 
