@@ -83,8 +83,10 @@ export default function RootLayout({
     "slogan": "Where Strategic Marketing Meets Memorable Gifting",
     "contactPoint": {
       "@type": "ContactPoint",
+      "telephone": "+65-9187-2356",
       "contactType": "customer service",
-      "availableLanguage": "English"
+      "availableLanguage": "English",
+      "areaServed": "SG"
     },
     "aggregateRating": {
       "@type": "AggregateRating",

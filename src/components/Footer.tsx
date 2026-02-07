@@ -114,15 +114,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                {/* TODO: Replace with real phone number */}
-                <a href="tel:+15550000000" className="text-ink-muted hover:text-primary transition-colors">
-                  +1 (555) 000-0000
+                <a href="tel:+6591872356" className="text-ink-muted hover:text-primary transition-colors">
+                  +65 9187 2356
                 </a>
               </li>
               <li>
-                {/* TODO: Replace with real location */}
                 <span className="text-ink-muted">
-                  New York, NY
+                  Singapore, SG
                 </span>
               </li>
             </ul>
