@@ -35,14 +35,14 @@ const fieldVariants = {
     transition: {
       delay: i * 0.1,
       duration: 0.4,
-      ease: 'easeOut',
+      ease: 'easeOut' as const,
     },
   }),
 };
 
 const messageVariants = {
   initial: { opacity: 0, y: -16 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' as const } },
   exit: { opacity: 0, y: -16, transition: { duration: 0.2 } },
 };
 
